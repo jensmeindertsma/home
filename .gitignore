@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# PNPM
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# ESLint
+.eslintcache
