@@ -19,14 +19,19 @@ export default function Content({
 }
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const file = await readFile(`content/${params.path}/${params.path}.md`, {
-    encoding: "utf8",
-  });
-  const ast = Markdoc.parse(file);
-  const content = Markdoc.transform(ast);
+  try {
+    const file = await readFile(`content/${params.path}/${params.path}.md`, {
+      encoding: "utf8",
+    });
 
-  return {
-    content,
-    details: parseDetails(ast),
-  };
+    const ast = Markdoc.parse(file);
+    const content = Markdoc.transform(ast);
+
+    return {
+      content,
+      details: parseDetails(ast),
+    };
+  } catch {
+    throw new Response("Content not found", { status: 404 });
+  }
 }
