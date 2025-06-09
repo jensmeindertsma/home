@@ -1,5 +1,6 @@
 ---
 title: SpookyPass
+category: challenges
 date: 2025-04-13
 difficulty: very-easy
 category: reversing
@@ -142,8 +143,4 @@ Welcome inside!
 HTB{un0bfu5c4t******}
 ```
 
-And we find the answer! `HTB{un0bfu5c4t******}`. Time to submit it:
-
-![I submit the password and it gets accepted](./images/submission.png)
-
-It is accepted! That was pretty easy, and definitely begs for more!
+And we find the answer! `HTB{un0bfu5c4t******}`.
