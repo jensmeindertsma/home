@@ -17,7 +17,7 @@ export function links(): Route.LinkDescriptors {
   return [
     {
       rel: "icon",
-      href: "/home.png",
+      href: "/icons/camp.png",
       type: "image/png",
     },
     { rel: "preload", href: stylesheet, as: "style" },
