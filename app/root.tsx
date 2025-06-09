@@ -20,7 +20,10 @@ export function links(): Route.LinkDescriptors {
       href: "/icons/camp.png",
       type: "image/png",
     },
+
+    { rel: "preload", href: "/mono.ttf", as: "font" },
     { rel: "preload", href: stylesheet, as: "style" },
+
     { rel: "stylesheet", href: stylesheet },
   ];
 }
@@ -37,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="m-6">
         {children}
         <ScrollRestoration />
         <Scripts />

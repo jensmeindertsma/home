@@ -1,24 +1,46 @@
-import type { Route } from "./+types/home";
 import Markdoc from "@markdoc/markdoc";
 import { parseDetails } from "~/services/content.server";
 import { readdir, readFile } from "node:fs/promises";
-import { Link } from "react-router";
 
-export default function Home({ loaderData }: Route.ComponentProps) {
+export default function Home() {
   return (
     <>
-      <h1>Jens Meindertsma</h1>
-      <p>Welcome to my website!</p>
+      <img src="/me.jpg" />
+      <h1 className="mt-6 font-mono text-5xl font-bold">
+        <span className="mb-2 block">Jens</span>
+        <span>Meindertsma</span>
+      </h1>
 
+      <a
+        href="https://github.com/jensmeindertsma"
+        className="mt-6 flex h-24 flex-row justify-center p-4 font-mono text-xl font-bold"
+      >
+        <picture className="w-16">
+          <source
+            srcSet="/github-light.png"
+            media="(prefers-color-scheme: dark)"
+          />
+          <img src="/github-dark.png" className="block h-16" />
+        </picture>
+        <span className="ml-8 flex h-full items-center">{"=>"}</span>
+        <span className="ml-8 flex h-full items-center underline decoration-2">
+          {" "}
+          ABOUT ME
+        </span>
+      </a>
+
+      {/*
       <ul>
         {loaderData.entries.map(({ path, icon, title, category, date }) => (
           <li key={path}>
             <Link to={path}>
-              {icon} {title} ({category}) ({date.toDateString()})
+              <img src={`/icons/${icon}.png`} /> {title} ({category}) (
+              {date.toDateString()})
             </Link>
           </li>
         ))}
       </ul>
+       */}
     </>
   );
 }
