@@ -1,7 +1,7 @@
 import type { Route } from "./+types/content";
 import Markdoc from "@markdoc/markdoc";
 import { parseDocument } from "~/services/content.server";
-import { Paragraph } from "~/services/markup";
+import { Image, Paragraph } from "~/services/markup";
 import { readFile } from "node:fs/promises";
 import React from "react";
 import { Link } from "react-router";
@@ -70,6 +70,7 @@ export default function Content({
       </div>
       {Markdoc.renderers.react(content, React, {
         components: {
+          Image,
           Paragraph,
         },
       })}
@@ -79,11 +80,11 @@ export default function Content({
 
 export async function loader({ params }: Route.LoaderArgs) {
   try {
-    const file = await readFile(`content/${params.path}/${params.path}.md`, {
+    const source = await readFile(`content/${params.path}/${params.path}.md`, {
       encoding: "utf8",
     });
 
-    return parseDocument(file);
+    return parseDocument({ source, name: params.path });
   } catch {
     throw new Response("Content not found", { status: 404 });
   }

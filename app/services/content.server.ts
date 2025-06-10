@@ -12,13 +12,31 @@ export function parseDetails(source: string) {
   }
 }
 
-export function parseDocument(source: string) {
+export function parseDocument({
+  source,
+  name,
+}: {
+  source: string;
+  name: string;
+}) {
   const ast = Markdoc.parse(source);
+
+  const details = Details.parse(yaml.load(ast.attributes.frontmatter));
 
   const config: Config = {
     nodes: {
       paragraph: {
         render: "Paragraph",
+      },
+
+      image: {
+        transform(node, config) {
+          const attributes = node.transformAttributes(config);
+          return new Markdoc.Tag("Image", {
+            ...attributes,
+            src: node.attributes.src.replace(/\.\/images/, `/${name}`),
+          });
+        },
       },
     },
   };
@@ -28,7 +46,7 @@ export function parseDocument(source: string) {
   try {
     return {
       content,
-      details: Details.parse(yaml.load(ast.attributes.frontmatter)),
+      details,
     };
   } catch (error) {
     throw new Error(`Invalid document: ${error}`);
