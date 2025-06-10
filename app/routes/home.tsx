@@ -40,7 +40,7 @@ export default function Home({
       <main>
         <nav>
           <ul className="flex flex-col gap-5 font-mono">
-            {entries.map(({ path, date, title, icon, ...entry }) => {
+            {entries.map(({ path, date, icon, ...entry }) => {
               const formattedDate = new Intl.DateTimeFormat("en-GB", {
                 day: "2-digit",
                 month: "2-digit",
@@ -71,12 +71,16 @@ export default function Home({
                 );
               }
 
+              let title = <span className="mb-2 underline">{entry.title}</span>;
+
               if (
                 entry.category === "challenges" ||
                 entry.category == "machines" ||
                 entry.category === "sherlocks"
               ) {
-                title = `${title} (HackTheBox)`;
+                title = (
+                  <span className="mb-2 block">{title} (HackTheBox)</span>
+                );
               }
 
               return (
@@ -86,8 +90,9 @@ export default function Home({
                       src={`/icons/${icon}.png`}
                       className="mt-auto mr-6 mb-auto w-12"
                     />
-                    <div>
-                      <span className="mb-2 block underline">{title}</span>
+                    <div className="flex w-100 flex-col">
+                      {title}
+
                       <div className="mt-1 flex flex-row flex-wrap gap-2 text-nowrap">
                         {tags}
                       </div>
