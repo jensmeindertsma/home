@@ -64,7 +64,7 @@ export default function Home({
                 return (
                   <span
                     key={text}
-                    className={`rounded-md pt-1 pr-2 pb-1 pl-2 font-mono text-xs text-black italic ${color}`}
+                    className={`rounded-md pt-1 pr-2 pb-1 pl-2 font-mono text-xs font-bold text-white ${color}`}
                   >
                     {text}
                   </span>

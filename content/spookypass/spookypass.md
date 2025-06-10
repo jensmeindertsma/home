@@ -6,4 +6,4 @@ date: 2025-06-09
 difficulty: very-easy
 ---
 
-Today we are solving `SpookyPass`, the top challenge on the HackTheBox platform.
+This simple challenge on the HackTheBox platform starts off with...

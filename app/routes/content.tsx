@@ -1,16 +1,58 @@
 import type { Route } from "./+types/content";
 import Markdoc from "@markdoc/markdoc";
 import { parseDocument } from "~/services/content.server";
+import { Paragraph } from "~/services/markup";
 import { readFile } from "node:fs/promises";
 import React from "react";
 import { Link } from "react-router";
 
 export default function Content({
-  loaderData: { details, content },
+  loaderData: {
+    details: { title, icon, date, ...details },
+    content,
+  },
 }: Route.ComponentProps) {
+  if (
+    details.category === "challenges" ||
+    details.category == "machines" ||
+    details.category === "sherlocks"
+  ) {
+    title = `${title} (HackTheBox)`;
+  }
+
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date);
+
+  const tags = [];
+
+  if (details.category === "posts") {
+    tags.push(formatTag(details.category, "bg-blue-500"));
+  } else {
+    tags.push(
+      formatTag(details.category, "bg-green-600"),
+      formatTag(details.difficulty, "bg-red-400"),
+    );
+  }
+
+  tags.push(formatTag(formattedDate, "bg-violet-400 "));
+
+  function formatTag(text: string, color: string) {
+    return (
+      <span
+        key={text}
+        className={`rounded-md pt-1 pr-2 pb-1 pl-2 font-mono text-xs font-bold text-white ${color}`}
+      >
+        {text}
+      </span>
+    );
+  }
+
   return (
     <>
-      <header>
+      <header className="mb-10">
         <Link to="/" className="flex flex-row">
           <img src="/avatar.jpg" className="mr-5 w-20" />
           <span className="flex flex-col font-mono text-3xl font-bold">
@@ -19,13 +61,18 @@ export default function Content({
           </span>
         </Link>
       </header>
-      <article>
-        <img src={`/icons/${details.icon}.png`} />
-        <h1>{details.title}</h1>
-        <p>Category: {details.category}</p>
-        <p>Date: {details.date.toDateString()}</p>
-        {Markdoc.renderers.react(content, React)}
-      </article>
+      <div className="mb-3 flex flex-row items-center gap-5 font-mono font-semibold">
+        <img src={`/icons/${icon}.png`} className="w-8" />
+        <h1 className="text-xl">{title}</h1>
+      </div>
+      <div className="mt-5 mb-5 flex flex-row flex-wrap gap-2 text-nowrap">
+        {tags}
+      </div>
+      {Markdoc.renderers.react(content, React, {
+        components: {
+          Paragraph,
+        },
+      })}
     </>
   );
 }

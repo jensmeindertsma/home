@@ -1,4 +1,4 @@
-import Markdoc from "@markdoc/markdoc";
+import Markdoc, { type Config } from "@markdoc/markdoc";
 import yaml from "js-yaml";
 import { z } from "zod/v4";
 
@@ -14,7 +14,16 @@ export function parseDetails(source: string) {
 
 export function parseDocument(source: string) {
   const ast = Markdoc.parse(source);
-  const content = Markdoc.transform(ast);
+
+  const config: Config = {
+    nodes: {
+      paragraph: {
+        render: "Paragraph",
+      },
+    },
+  };
+
+  const content = Markdoc.transform(ast, config);
 
   try {
     return {
