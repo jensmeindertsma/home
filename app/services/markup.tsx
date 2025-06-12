@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import style from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
+import style from "react-syntax-highlighter/dist/esm/styles/prism/gruvbox-dark";
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return <p className="mb-5">{children}</p>;
@@ -8,12 +8,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
 
 export function Code({ content }: { content: string }) {
   return (
-    <code
-      className="rounded-sm pr-2 pl-2 font-mono text-gray-300"
-      style={{
-        backgroundColor: "hsl(220, 13%, 18%)",
-      }}
-    >
+    <code className="rounded-sm bg-[rgb(29,32,33)] pr-2 pl-2 font-mono text-[rgb(235,219,178)]">
       {content}
     </code>
   );

