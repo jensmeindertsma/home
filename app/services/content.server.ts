@@ -29,6 +29,13 @@ export function parseDocument({
         render: "Paragraph",
       },
 
+      code: {
+        render: "Code",
+        attributes: {
+          content: { type: String, required: true },
+        },
+      },
+
       fence: {
         render: "Fence",
         attributes: {

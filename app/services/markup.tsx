@@ -6,6 +6,19 @@ export function Paragraph({ children }: { children: ReactNode }) {
   return <p className="mb-5">{children}</p>;
 }
 
+export function Code({ content }: { content: string }) {
+  return (
+    <code
+      className="rounded-sm pr-2 pl-2 font-mono text-gray-300"
+      style={{
+        backgroundColor: "hsl(220, 13%, 18%)",
+      }}
+    >
+      {content}
+    </code>
+  );
+}
+
 export function Image({
   src,
   alt,
@@ -38,7 +51,7 @@ export function Fence({
         language={language}
         style={style}
         customStyle={{
-          borderRadius: 0,
+          borderRadius: "4px",
         }}
       >
         {content}
