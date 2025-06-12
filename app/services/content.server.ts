@@ -29,6 +29,14 @@ export function parseDocument({
         render: "Paragraph",
       },
 
+      fence: {
+        render: "Fence",
+        attributes: {
+          language: { type: String, required: true },
+          content: { type: String, required: true },
+        },
+      },
+
       image: {
         transform(node, config) {
           const attributes = node.transformAttributes(config);

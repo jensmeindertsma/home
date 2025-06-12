@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import style from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return <p className="mb-5">{children}</p>;
@@ -20,5 +22,27 @@ export function Image({
       title={title}
       className="mt-5 mr-auto mb-5 ml-auto sm:pr-5 sm:pl-5"
     />
+  );
+}
+
+export function Fence({
+  content,
+  language,
+}: {
+  content: string;
+  language: string;
+}) {
+  return (
+    <div className="mt-5 mb-5">
+      <SyntaxHighlighter
+        language={language}
+        style={style}
+        customStyle={{
+          borderRadius: 0,
+        }}
+      >
+        {content}
+      </SyntaxHighlighter>
+    </div>
   );
 }
