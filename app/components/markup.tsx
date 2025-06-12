@@ -8,7 +8,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
 
 export function Code({ content }: { content: string }) {
   return (
-    <code className="rounded-sm bg-[rgb(29,32,33)] pr-2 pl-2 font-mono text-[rgb(235,219,178)]">
+    <code className="rounded-sm bg-[rgb(29,32,33)] pt-1 pr-2 pb-1 pl-2 font-mono text-[rgb(235,219,178)]">
       {content}
     </code>
   );
@@ -42,15 +42,17 @@ export function Fence({
 }) {
   return (
     <div className="mt-5 mb-5">
-      <SyntaxHighlighter
-        language={language}
-        style={style}
-        customStyle={{
-          borderRadius: "4px",
-        }}
-      >
+      <SyntaxHighlighter language={language} style={style} PreTag={Pre}>
         {content}
       </SyntaxHighlighter>
     </div>
+  );
+}
+
+function Pre({ children }: { children: ReactNode }) {
+  return (
+    <pre className="mt-5 mb-5 overflow-auto rounded-sm bg-[rgb(29,32,33)] p-5">
+      {children}
+    </pre>
   );
 }

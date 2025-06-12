@@ -1,7 +1,7 @@
 import type { Route } from "./+types/content";
 import Markdoc from "@markdoc/markdoc";
+import { Code, Fence, Image, Paragraph } from "~/components/markup";
 import { parseDocument } from "~/services/content.server";
-import { Code, Fence, Image, Paragraph } from "~/services/markup";
 import { readFile } from "node:fs/promises";
 import React from "react";
 import { Link } from "react-router";
@@ -86,7 +86,7 @@ export async function loader({ params }: Route.LoaderArgs) {
       encoding: "utf8",
     });
 
-    return parseDocument({ source, name: params.path });
+    return parseDocument({ source, name: params.path as string });
   } catch {
     throw new Response("Content not found", { status: 404 });
   }
