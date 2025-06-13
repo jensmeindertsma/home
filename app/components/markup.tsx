@@ -81,6 +81,22 @@ export function Image({
   );
 }
 
+export function Link({
+  href,
+  title,
+  children,
+}: {
+  children: ReactNode;
+  href: string;
+  title: string;
+}) {
+  return (
+    <a href={href} title={title} className="text-blue-500">
+      {children}
+    </a>
+  );
+}
+
 export function Paragraph({ children }: { children: ReactNode }) {
   return <p className="mb-5">{children}</p>;
 }

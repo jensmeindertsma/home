@@ -61,6 +61,14 @@ export function parseDocument({
         },
       },
 
+      link: {
+        render: "MarkupLink",
+        attributes: {
+          href: { type: String, required: true },
+          title: { type: String, required: true },
+        },
+      },
+
       paragraph: {
         render: "Paragraph",
       },

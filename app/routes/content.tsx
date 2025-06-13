@@ -6,6 +6,7 @@ import {
   Fence,
   Heading,
   Image,
+  Link as MarkupLink,
   Paragraph,
 } from "~/components/markup";
 import { parseDocument } from "~/services/content.server";
@@ -82,6 +83,7 @@ export default function Content({
           Fence,
           Heading,
           Image,
+          MarkupLink,
           Paragraph,
         },
       })}
