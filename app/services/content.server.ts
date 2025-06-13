@@ -25,8 +25,8 @@ export function parseDocument({
 
   const config: Config = {
     nodes: {
-      paragraph: {
-        render: "Paragraph",
+      blockquote: {
+        render: "Blockquote",
       },
 
       code: {
@@ -44,6 +44,13 @@ export function parseDocument({
         },
       },
 
+      heading: {
+        render: "Heading",
+        attributes: {
+          level: { type: String, required: true },
+        },
+      },
+
       image: {
         transform(node, config) {
           const attributes = node.transformAttributes(config);
@@ -52,6 +59,10 @@ export function parseDocument({
             src: node.attributes.src.replace(/\.\/images/, `/${name}`),
           });
         },
+      },
+
+      paragraph: {
+        render: "Paragraph",
       },
     },
   };

@@ -2,8 +2,13 @@ import type { ReactNode } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import style from "react-syntax-highlighter/dist/esm/styles/prism/gruvbox-dark";
 
-export function Paragraph({ children }: { children: ReactNode }) {
-  return <p className="mb-5">{children}</p>;
+export function Blockquote({ children }: { children: ReactNode }) {
+  return (
+    <blockquote className="mb-5 flex flex-row gap-3">
+      <span className="font-bold">{"=>"}</span>
+      <span className="italic">{children}</span>
+    </blockquote>
+  );
 }
 
 export function Code({ content }: { content: string }) {
@@ -12,6 +17,49 @@ export function Code({ content }: { content: string }) {
       {content}
     </code>
   );
+}
+
+export function Fence({
+  content,
+  language,
+}: {
+  content: string;
+  language: string;
+}) {
+  return (
+    <div className="mt-5 mb-5">
+      <SyntaxHighlighter language={language} style={style} PreTag={Pre}>
+        {content}
+      </SyntaxHighlighter>
+    </div>
+  );
+}
+
+export function Heading({
+  children,
+  level,
+}: {
+  children: ReactNode;
+  level: number;
+}) {
+  switch (level) {
+    case 2: {
+      return <h2 className="mt-10 mb-5 text-2xl">{children}</h2>;
+    }
+
+    case 3: {
+      return <h3 className="mt-10 mb-5 text-xl">{children}</h3>;
+    }
+
+    case 4: {
+      return <h4 className="mt-10 mb-5 text-lg">{children}</h4>;
+    }
+
+    default: {
+      console.log(level);
+      throw new Error("heading, please set title in frontmatter");
+    }
+  }
 }
 
 export function Image({
@@ -33,20 +81,8 @@ export function Image({
   );
 }
 
-export function Fence({
-  content,
-  language,
-}: {
-  content: string;
-  language: string;
-}) {
-  return (
-    <div className="mt-5 mb-5">
-      <SyntaxHighlighter language={language} style={style} PreTag={Pre}>
-        {content}
-      </SyntaxHighlighter>
-    </div>
-  );
+export function Paragraph({ children }: { children: ReactNode }) {
+  return <p className="mb-5">{children}</p>;
 }
 
 function Pre({ children }: { children: ReactNode }) {

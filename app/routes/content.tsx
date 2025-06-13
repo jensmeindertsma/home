@@ -1,6 +1,13 @@
 import type { Route } from "./+types/content";
 import Markdoc from "@markdoc/markdoc";
-import { Code, Fence, Image, Paragraph } from "~/components/markup";
+import {
+  Blockquote,
+  Code,
+  Fence,
+  Heading,
+  Image,
+  Paragraph,
+} from "~/components/markup";
 import { parseDocument } from "~/services/content.server";
 import { readFile } from "node:fs/promises";
 import React from "react";
@@ -70,8 +77,10 @@ export default function Content({
       </div>
       {Markdoc.renderers.react(content, React, {
         components: {
+          Blockquote,
           Code,
           Fence,
+          Heading,
           Image,
           Paragraph,
         },
