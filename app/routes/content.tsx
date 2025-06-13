@@ -59,7 +59,7 @@ export default function Content({
 
   return (
     <>
-      <header className="mb-10">
+      <header className="mb-15">
         <Link to="/" className="flex flex-row">
           <img src="/avatar.jpg" className="mr-5 w-20" />
           <span className="flex flex-col font-mono text-3xl font-bold">
