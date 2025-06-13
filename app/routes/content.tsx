@@ -63,9 +63,9 @@ export default function Content({
       </header>
       <div className="mb-3 flex flex-row items-center gap-5 font-mono font-semibold">
         <img src={`/icons/${icon}.png`} className="w-8" />
-        <h1 className="text-xl">{title}</h1>
+        <h1 className="text-3xl">{title}</h1>
       </div>
-      <div className="mt-5 mb-5 flex flex-row flex-wrap gap-2 text-nowrap">
+      <div className="mt-5 mb-5 flex flex-row flex-wrap gap-2 text-nowrap sm:mb-10">
         {tags}
       </div>
       {Markdoc.renderers.react(content, React, {
