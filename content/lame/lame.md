@@ -57,6 +57,8 @@ The version of `VSFTPd` running here is `2.3.4`.
 
 > There is a famous backdoor in VSFTPd version 2.3.4, and a Metasploit module to exploit it. Does that exploit work here?
 
+This famous backdoor has the identifier `CVE-2011-2523`. Why is it so famous? This is a backdoor in the source code that starts up a "bind shell" (port start listening for us to connect to and have a shell) when the username during FTP login contains a smiley face `:)`. It is largely unknown how the backdoor got into the source code, who is responsible, and what intent this malicious party had. This vulnerability had a widespread effect and its reach cannot be overstated.
+
 We'll start up Metasploit:
 
 ```
