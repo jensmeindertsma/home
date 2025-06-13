@@ -91,6 +91,7 @@ export default function Content({
 
 export async function loader({ params }: Route.LoaderArgs) {
   try {
+    // This is supposed to fail in production because we pre-render everything.
     const source = await readFile(`content/${params.path}/${params.path}.md`, {
       encoding: "utf8",
     });
