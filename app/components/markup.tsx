@@ -28,7 +28,7 @@ export function Image({
       src={src}
       alt={alt}
       title={title}
-      className="mt-5 mr-auto mb-5 ml-auto sm:pr-5 sm:pl-5"
+      className="mt-5 mr-auto mb-5 ml-auto"
     />
   );
 }
