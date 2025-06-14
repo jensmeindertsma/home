@@ -60,6 +60,10 @@ export default function Home({
 
               tags.push(formatTag(formattedDate, "bg-violet-400"));
 
+              if (entry.category === "machines") {
+                tags.push(formatTag(entry.os, "bg-yellow-500"));
+              }
+
               function formatTag(text: string, color: string) {
                 return (
                   <span
