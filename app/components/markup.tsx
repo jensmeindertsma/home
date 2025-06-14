@@ -103,7 +103,7 @@ export function Paragraph({ children }: { children: ReactNode }) {
 
 function Pre({ children }: { children: ReactNode }) {
   return (
-    <pre className="mt-5 mb-5 overflow-auto rounded-sm bg-[rgb(29,32,33)] p-5">
+    <pre className="mt-5 mb-5 overflow-auto rounded-sm bg-[rgb(29,32,33)] p-5 font-mono">
       {children}
     </pre>
   );

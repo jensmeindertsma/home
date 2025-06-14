@@ -45,6 +45,10 @@ export default function Content({
     );
   }
 
+  if (details.category === "machines") {
+    tags.push(formatTag(details.os, "bg-yellow-500"));
+  }
+
   tags.push(formatTag(formattedDate, "bg-violet-400 "));
 
   function formatTag(text: string, color: string) {

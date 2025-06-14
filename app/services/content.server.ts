@@ -103,6 +103,7 @@ const Details = z.discriminatedUnion("category", [
     ...base,
     category: z.literal("machines"),
     difficulty: z.enum(["easy", "medium", "hard", "insane"]),
+    os: z.string(),
   }),
 
   z.object({

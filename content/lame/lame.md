@@ -4,6 +4,7 @@ icon: zzz
 category: machines
 date: 2025-06-13
 difficulty: easy
+os: linux
 ---
 
 For the very first box ever to be released on the HackTheBox platform, we'll work through the attack guided by the questions in "Guided Mode".
