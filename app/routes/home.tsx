@@ -89,7 +89,7 @@ export default function Home({
 
               return (
                 <li key={path}>
-                  <Link to={path} className="flex flex-row p-4">
+                  <Link to={path} className="flex flex-row p-4 pl-0">
                     <img
                       src={`/icons/${icon}.png`}
                       className="mt-auto mr-6 mb-auto w-12"
