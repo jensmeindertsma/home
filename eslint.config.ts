@@ -1,5 +1,4 @@
 import eslint from "@eslint/js";
-// @ts-expect-error: this package has no type declarations
 import importPlugin from "eslint-plugin-import";
 import nodePlugin from "eslint-plugin-n";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
