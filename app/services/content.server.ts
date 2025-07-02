@@ -61,11 +61,22 @@ export function parseDocument({
         },
       },
 
+      item: {
+        render: "Item",
+      },
+
       link: {
         render: "MarkupLink",
         attributes: {
           href: { type: String, required: true },
           title: { type: String, required: true },
+        },
+      },
+
+      list: {
+        render: "List",
+        attributes: {
+          ordered: { type: Boolean, required: true },
         },
       },
 

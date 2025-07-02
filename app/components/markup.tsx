@@ -97,6 +97,24 @@ export function Link({
   );
 }
 
+export function List({
+  ordered,
+  children,
+}: {
+  ordered: boolean;
+  children: ReactNode;
+}) {
+  if (ordered) {
+    return <ol className="list-inside list-decimal">{children}</ol>;
+  } else {
+    return <ul className="list-inside list-disc">{children}</ul>;
+  }
+}
+
+export function Item({ children }: { children: ReactNode }) {
+  return <li className="mb-3">{children}</li>;
+}
+
 export function Paragraph({ children }: { children: ReactNode }) {
   return <p className="mb-5">{children}</p>;
 }

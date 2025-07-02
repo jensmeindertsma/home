@@ -226,7 +226,7 @@ Where `dawn` and `home` are both separate applications:
   SESSION_SECRET="xxxxxxxxxxxx"
   ```
   These variables are loaded into the container later on in the script.
-- a port file for both, which specifies a unique port on localhost on which the container will be listening. This is important because this is the port that Nginx (our reverse proxy exposed to the scary internet) will forward traffic bound for this application to.
+- A port file for both, which specifies a unique port on localhost on which the container will be listening. This is important because this is the port that Nginx (our reverse proxy exposed to the scary internet) will forward traffic bound for this application to.
 
 Then, the script chains up all the environment variables into a single argument, stops the old container and starts a new one based on the new image we uploaded:
 
