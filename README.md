@@ -1,8 +1,3 @@
-# 🏡 Home
+# 🏡 jensmeindertsma.com
 
 My website.
-
-# To do
-
-- [ ] Table of contents
-- [ ] Server-side syntax highlighting
