@@ -1,14 +1,7 @@
-import type { Route } from "./+types/home";
-import { parseDetails } from "~/services/content.server";
-import { readdir, readFile } from "node:fs/promises";
-import { Link } from "react-router";
-
-export default function Home({
-  loaderData: { entries },
-}: Route.ComponentProps) {
+export default function Home() {
   return (
     <>
-      <header className="mb-12 flex flex-col gap-8 md:mb-12 md:flex-row md:gap-12">
+      <header className="mb-12 flex flex-col gap-8 md:mt-18 md:mb-12 md:flex-row md:gap-12">
         <img src="/me.jpg" className="md:w-80" />
 
         <div className="flex flex-col justify-start gap-6 md:gap-10">
@@ -37,100 +30,7 @@ export default function Home({
           </a>
         </div>
       </header>
-      <main>
-        <nav>
-          <ul className="flex flex-col gap-5 font-mono">
-            {entries.map(({ path, date, icon, ...entry }) => {
-              const formattedDate = new Intl.DateTimeFormat("en-GB", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-              }).format(date);
-
-              const tags = [];
-
-              if (entry.category === "posts") {
-                tags.push(formatTag(entry.category, "bg-blue-500"));
-              } else {
-                tags.push(
-                  formatTag(entry.category, "bg-green-600"),
-                  formatTag(entry.difficulty, "bg-red-400"),
-                );
-              }
-
-              tags.push(formatTag(formattedDate, "bg-violet-400"));
-
-              if (entry.category === "machines") {
-                tags.push(formatTag(entry.os, "bg-yellow-500"));
-              }
-
-              function formatTag(text: string, color: string) {
-                return (
-                  <span
-                    key={text}
-                    className={`rounded-md pt-1 pr-2 pb-1 pl-2 font-mono text-xs font-bold text-white ${color}`}
-                  >
-                    {text}
-                  </span>
-                );
-              }
-
-              let title = <span className="mb-2 underline">{entry.title}</span>;
-
-              if (
-                entry.category === "challenges" ||
-                entry.category == "machines" ||
-                entry.category === "sherlocks"
-              ) {
-                title = (
-                  <span className="mb-2 block">{title} (HackTheBox)</span>
-                );
-              }
-
-              return (
-                <li key={path}>
-                  <Link to={path} className="flex flex-row p-4 pl-0">
-                    <img
-                      src={`/icons/${icon}.png`}
-                      className="mt-auto mr-6 mb-auto w-12"
-                    />
-                    <div className="flex w-100 flex-col">
-                      {title}
-
-                      <div className="mt-1 flex flex-row flex-wrap gap-2 text-nowrap">
-                        {tags}
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </main>
+      <main></main>
     </>
   );
-}
-
-export async function loader() {
-  const entries = [];
-
-  for (const entry of await readdir("content", { withFileTypes: true })) {
-    const file = await readFile(`content/${entry.name}/${entry.name}.md`, {
-      encoding: "utf8",
-    });
-
-    const details = parseDetails(file);
-
-    entries.push({
-      path: `/${entry.name}`,
-      ...details,
-    });
-  }
-
-  entries.sort((a, b) => b.date.getTime() - a.date.getTime());
-
-  return {
-    entries,
-  };
 }
