@@ -1,4 +1,9 @@
-# Legacy
+---
+name: Legacy
+kind: lab
+difficulty: easy
+platform: windows
+---
 
 Welcome to Legacy, the first Windows box on HackTheBox Labs. We'll get started with the IP address, `10.10.10.4`.
 
