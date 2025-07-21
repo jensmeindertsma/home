@@ -1,5 +1,6 @@
 ---
 name: Lame
+date: 2025-07-19
 kind: lab
 difficulty: easy
 platform: linux

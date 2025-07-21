@@ -1,5 +1,6 @@
 ---
 name: Flag Command
+date: 2025-07-20
 kind: challenge
 difficulty: very-easy
 ---

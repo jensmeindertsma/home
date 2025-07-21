@@ -1,5 +1,6 @@
 ---
 name: Devel
+date: 2025-07-20
 kind: lab
 difficulty: easy
 platform: windows

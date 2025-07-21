@@ -1,5 +1,6 @@
 ---
 name: SpookyPass
+date: 2025-07-19
 kind: challenge
 difficulty: very-easy
 ---
