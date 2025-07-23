@@ -1,7 +1,6 @@
 ---
 name: Beep
 date: 2025-07-21
-published: false
 kind: lab
 difficulty: easy
 platform: linux
@@ -13,7 +12,7 @@ Today we are tackling Beep, an easy Linux machine on HackTheBox.
 
 As always we first do a port scan with `nmap`:
 
-```
+```bash
 $ sudo nmap -sV -sC 10.10.10.7
 
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-21 12:11 CEST
@@ -122,4 +121,4 @@ Using the wordlist means you only discover paths present in the wordlist, but it
 
 We discovered `/admin`, but that is not accessible without a password:
 
-![](.//images/freepbx.png)
+![](./images/freepbx.png)
