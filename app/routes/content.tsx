@@ -48,13 +48,13 @@ export default function Content({
           {Markdoc.renderers.react(content, React, {
             components: {
               Blockquote: ({ children }) => (
-                <blockquote className="mb-5 flex flex-row gap-3">
+                <blockquote className="flex flex-row gap-3">
                   <span className="font-bold">{"=>"}</span>
                   <span className="italic">{children}</span>
                 </blockquote>
               ),
               Code: ({ content }) => (
-                <code className="rounded-sm bg-[rgb(29,32,33)] pt-1 pr-2 pb-1 pl-2 font-mono text-[rgb(235,219,178)]">
+                <code className="rounded-sm bg-[rgb(29,32,33)] pt-0 pr-1 pb-0 pl-1 font-mono text-[rgb(235,219,178)]">
                   {content}
                 </code>
               ),
@@ -118,6 +118,16 @@ export default function Content({
                   {children}
                 </a>
               ),
+              List: ({ children, ordered }) =>
+                ordered ? (
+                  <ol className="mt-5 mb-5 list-inside list-decimal marker:font-semibold marker:text-red-500">
+                    {children}
+                  </ol>
+                ) : (
+                  <ul className="mt-5 mb-5 list-inside list-disc marker:text-red-500">
+                    {children}
+                  </ul>
+                ),
               Paragraph: ({ children }) => <p className="mb-5">{children}</p>,
             },
           })}
@@ -181,6 +191,13 @@ export async function loader({ params: { entry } }: Route.LoaderArgs) {
         attributes: {
           href: { type: String, required: true },
           title: { type: String, required: true },
+        },
+      },
+
+      list: {
+        render: "List",
+        attributes: {
+          ordered: { type: String, required: true },
         },
       },
 
