@@ -32,7 +32,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className="bg-white text-black dark:bg-black dark:text-white"
+      className="h-full bg-white text-black dark:bg-black dark:text-white"
     >
       <head>
         <meta charSet="utf-8" />
@@ -40,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="p-5 sm:mr-auto sm:ml-auto sm:w-2xl md:w-3xl md:p-10">
+      <body className="flex min-h-screen flex-col p-5 sm:mr-auto sm:ml-auto sm:w-2xl md:w-4xl md:p-10">
         {children}
         <ScrollRestoration />
         <Scripts />

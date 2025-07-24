@@ -23,7 +23,7 @@ export default function Content({
           <span>Meindertsma</span>
         </div>
       </header>
-      <main>
+      <main className="flex-1">
         <h1 className="mb-4 text-4xl font-bold underline">
           {frontmatter.name}
         </h1>

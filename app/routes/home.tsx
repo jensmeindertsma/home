@@ -20,35 +20,40 @@ export default function Home({ loaderData: content }: Route.ComponentProps) {
           </p>
         </div>
       </header>
-      <main>
+      <main className="flex-1">
         <nav>
           <ul>
-            {content.map((entry) => (
-              <li key={entry.path} className="mb-5">
-                <Link to={entry.path}>
-                  <span className="decoration-red block text-xl font-bold underline">
-                    {entry.frontmatter.name}
-                  </span>
-                  <span className="font-mono">
-                    <span>
-                      {new Intl.DateTimeFormat("nl-NL", {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      }).format(new Date(entry.frontmatter.date))}
-                    </span>{" "}
-                    <span className="font-bold text-red-500">|</span>{" "}
-                    <span>{entry.frontmatter.kind}</span>{" "}
-                    {entry.frontmatter.kind === "lab" ? (
-                      <>
-                        <span className="font-bold text-red-500">|</span>{" "}
-                        <span>{entry.frontmatter.platform}</span>
-                      </>
-                    ) : null}
-                  </span>
-                </Link>
-              </li>
-            ))}
+            {content
+              .sort(
+                (a, b) =>
+                  b.frontmatter.date.getTime() - a.frontmatter.date.getTime(),
+              )
+              .map((entry) => (
+                <li key={entry.path} className="mb-5">
+                  <Link to={entry.path}>
+                    <span className="decoration-red block text-xl font-bold underline">
+                      {entry.frontmatter.name}
+                    </span>
+                    <span className="font-mono">
+                      <span>
+                        {new Intl.DateTimeFormat("nl-NL", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }).format(new Date(entry.frontmatter.date))}
+                      </span>{" "}
+                      <span className="font-bold text-red-500">|</span>{" "}
+                      <span>{entry.frontmatter.kind}</span>{" "}
+                      {entry.frontmatter.kind === "lab" ? (
+                        <>
+                          <span className="font-bold text-red-500">|</span>{" "}
+                          <span>{entry.frontmatter.platform}</span>
+                        </>
+                      ) : null}
+                    </span>
+                  </Link>
+                </li>
+              ))}
           </ul>
         </nav>
       </main>

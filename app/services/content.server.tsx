@@ -9,14 +9,14 @@ export async function parseFrontmatter(source: string) {
     z.object({
       kind: z.literal("lab"),
       name: z.string(),
-      date: z.iso.date(),
+      date: z.coerce.date(),
       difficulty: z.enum(["easy", "medium", "hard", "insane"]),
       platform: z.enum(["linux", "windows"]),
     }),
     z.object({
       kind: z.literal("challenge"),
       name: z.string(),
-      date: z.iso.date(),
+      date: z.coerce.date(),
       difficulty: z.enum(["very-easy", "easy", "medium", "hard", "insane"]),
     }),
   ]);
